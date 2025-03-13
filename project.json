@@ -1,0 +1,8 @@
+{
+    "name": "tauro",
+    "projects": {
+        "ms-tauro-auth": {
+            "project": "apps/microservices/auth"
+        }
+    }
+}

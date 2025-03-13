@@ -1,0 +1,15 @@
+{
+  "name": "ms-tauro-auth",
+  "root": "apps/microservices/auth",
+  "sourceRoot": "apps/microservices/auth/src",
+  "projectType": "application",
+  "targets": {
+    "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "bun run dev",
+        "cwd": "apps/microservices/auth"
+      }
+    }
+  }
+}

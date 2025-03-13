@@ -1,0 +1,21 @@
+import pluginJs from '@eslint/js';
+
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
+
+/** @type {import('eslint').Linter.Config[]} */
+export default [
+  { files: ['**/*.{js,mjs,cjs,ts}'] },
+  { languageOptions: { globals: globals.browser } },
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
+  {
+    ignores: [
+      'node_modules',
+      'dist',
+      '**/eslint.config.js',
+      '**/lint-staged.config.js',
+      'src/schemas/auth-schema.ts',
+    ],
+  },
+];

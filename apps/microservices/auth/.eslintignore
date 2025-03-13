@@ -1,0 +1,10 @@
+.env
+.gitignore
+*.md
+*.json
+*.lock
+'node_modules',
+'dist',
+'**/eslint.config.js',
+'**/lint-staged.config.js',
+'src/schemas/auth-schema.ts',
