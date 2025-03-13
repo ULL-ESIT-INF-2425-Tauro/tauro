@@ -12,7 +12,8 @@
     "noEmit": true,
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@tauro/shared-types": ["../../../libs/shared-types/src/index.ts"]
     }
   },
   "include": ["src/**/*"],

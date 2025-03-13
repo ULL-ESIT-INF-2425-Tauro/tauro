@@ -1,14 +1,18 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
-    "default": ["{projectRoot}/**/*", "sharedGlobals"],
-    "production": ["default"],
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
+    "production": [
+      "default"
+    ],
     "sharedGlobals": []
   },
   "cli": {
     "packageManager": "pnpm"
   },
-
   "plugins": [
     {
       "plugin": "@nx/js/typescript",
@@ -21,6 +25,20 @@
           "configName": "tsconfig.lib.json",
           "buildDepsName": "build-deps",
           "watchDepsName": "watch-deps"
+        }
+      },
+      "exclude": [
+        "libs/shared-types/*"
+      ]
+    },
+    {
+      "plugin": "@nx/js/typescript",
+      "include": [
+        "libs/shared-types/*"
+      ],
+      "options": {
+        "typecheck": {
+          "targetName": "typecheck"
         }
       }
     }
