@@ -3,6 +3,9 @@
     "projects": {
         "ms-tauro-auth": {
             "project": "apps/microservices/auth"
+        },
+        "ms-tauro-products": {
+            "project": "apps/microservices/products"
         }
     }
 }
