@@ -1,0 +1,15 @@
+{
+    "name": "ms-tauro-products",
+    "root": "apps/microservices/products",
+    "sourceRoot": "apps/microservices/products",
+    "projectType": "application",
+    "targets": {
+        "dev": {
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "make air",
+                "cwd": "apps/microservices/products"
+            }
+        }
+    }
+}

@@ -1,0 +1,32 @@
+# System and IDE files
+.vscode/
+.idea/
+*.swp
+
+# Temporary files
+/tmp/
+*.log
+*.out
+
+# Go build artifacts
+main
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.o
+*.test
+
+/bin/
+/docs/
+
+# Vendor directory (if not using `go mod`)
+/vendor/
+
+# Air temporary files
+.air/
+.air.toml.tmp
+
+# Environment variables
+.env
