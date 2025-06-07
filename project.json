@@ -6,6 +6,9 @@
         },
         "ms-tauro-products": {
             "project": "apps/microservices/products"
+        },
+        "tauro-host": {
+            "project": "apps/host"
         }
     }
 }
