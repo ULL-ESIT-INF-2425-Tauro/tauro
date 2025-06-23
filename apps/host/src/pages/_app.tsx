@@ -5,10 +5,10 @@ function TauroApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <main className="app">
-        <Component {...pageProps}/>
+        <Component {...pageProps} />
       </main>
     </>
   );
-};
+}
 
 export default TauroApp;

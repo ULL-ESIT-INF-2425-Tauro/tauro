@@ -1,0 +1,9 @@
+{
+  "name": "tauro-comperium",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/microfrontends/comperium",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project comperium --web",
+  "targets": {}
+}

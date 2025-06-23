@@ -1,0 +1,7 @@
+.env
+.gitignore
+*.md
+*.json
+*.lock
+.next
+.node_modules

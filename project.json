@@ -9,6 +9,12 @@
         },
         "tauro-host": {
             "project": "apps/host"
+        },
+        "tauro-comperium": {
+            "project": "apps/microfrontends/comperium"
+        },
+        "tauro-propsync": {
+            "project": "apps/microfrontends/propsync"
         }
     }
 }

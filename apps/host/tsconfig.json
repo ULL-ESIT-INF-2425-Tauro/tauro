@@ -1,5 +1,8 @@
 {
   "extends": "../../tsconfig.base.json",
+  "references": [
+    { "path": "../../libs/shared-types" }
+  ],
   "compilerOptions": {
     "jsx": "preserve",
     "noEmit": true,
@@ -22,13 +25,12 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@tauro/shared/types": ["../../libs/shared-types/src/index.ts"],
+      "@/*": ["./src/*"],
     },
     "outDir": "dist",
-    "rootDir": "src",
     "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo"
   },
   "include": [

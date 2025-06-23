@@ -7,8 +7,6 @@ const { NextFederationPlugin } = require('@module-federation/nextjs-mf');
  **/
 const nextConfig = {
   nx: {
-    // Set this to true if you would like to use SVGR
-    // See: https://github.com/gregberge/svgr
     svgr: false,
   },
 
@@ -19,22 +17,23 @@ const nextConfig = {
       new NextFederationPlugin({
         name: 'host',
         remotes: {
-          remote: `remote@http://localhost:3001/_next/static/${isServer ? 'ssr' : 'chunks'
-            }/remoteEntry.js`,
+          remote: `remote@http://localhost:3001/_next/static/${
+            isServer ? 'ssr' : 'chunks'
+          }/remoteEntry.js`,
         },
         filename: 'static/chunks/remoteEntry.js',
-        extraOptions: {}
-      }),
+        shared: {
+          react: { singleton: true, requiredVersion: '18.3.1' },
+          'react-dom': { singleton: true, requiredVersion: '18.3.1' },
+        },
+        extraOptions: {},
+      })
     );
 
     return config;
   },
 };
 
-const plugins = [
-  // Add more Next.js plugins to this list if needed.
-  withNx,
-];
+const plugins = [withNx];
 
 module.exports = composePlugins(...plugins)(nextConfig);
-

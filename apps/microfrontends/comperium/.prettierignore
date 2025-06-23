@@ -1,0 +1,8 @@
+.env
+.gitignore
+*.md
+*.json
+*.lock
+.keystone
+.node_modules
+verzioDB
