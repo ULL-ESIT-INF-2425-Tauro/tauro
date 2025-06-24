@@ -181,16 +181,9 @@ const VerzioApp: React.FC = () => {
         return;
       }
 
-      const versionName = prompt('📝 Enter version name:', 'imported') || 'imported';
-
-      for (const entry of parsed.entries) {
-        await axios.post('/api/version/save', {
-          type: entry.type,
-          name: entry.name,
-          data: entry.data,
-          comment: `Imported as ${versionName}`
-        });
-      }
+      const response = await axios.post('/api/package/import', {
+        entries: parsed.entries,
+      });
 
       alert('✅ Import successful');
 

@@ -25,6 +25,8 @@ import { document } from '@keystone-6/fields-document'
 // when using Typescript, you can refine your types to a stricter subset by importing
 // the generated types from '.keystone/types'
 import { type Lists } from '.keystone/types'
+import { deletePageVersions } from './api/versioning/hooks/deletePageVersions'
+import { deleteComponentVersions } from './api/versioning/hooks/deleteComponentVersions'
 
 export const lists = {
   User: list({
@@ -154,6 +156,14 @@ export const lists = {
       name: text({ validation: { isRequired: true }}),
       props: json(),
       pages: relationship({ ref: 'Page.components', many: true }),
+    },
+    hooks: {
+      beforeOperation: async ({ operation, item }) => {
+        if (operation === 'delete' && item) {
+          const component = item as unknown as { customId: string };
+          await deleteComponentVersions(component.customId);
+        }
+      },
     }
   }),
 
@@ -179,7 +189,15 @@ export const lists = {
           inlineCreate: { fields: ['name'] },
         },
       }),
-    }
+    },
+    hooks: {
+      beforeOperation: async ({ operation, item }) => {
+        if (operation === 'delete' && item) {
+          const page = item as unknown as { customId: string };
+          await deletePageVersions(page.customId);
+        }
+      }
+    },
   }),
 
 } satisfies Lists

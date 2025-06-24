@@ -1,18 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-
-type VersionEntry = {
-  type: 'Page' | 'Component',
-  name: string,
-  version: string,
-  timestamp: string,
-  comment?: string
-  data: unknown
-}
-
-type VersionDB = {
-  versions: VersionEntry[]
-}
+import { VersionDB } from '../../verzio/types'
 
 const file = 'verzioDB/verzio.json'
 

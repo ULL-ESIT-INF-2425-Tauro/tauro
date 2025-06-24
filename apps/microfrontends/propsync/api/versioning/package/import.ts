@@ -43,7 +43,7 @@ export const importPackageRoute = (router: Router, context: KeystoneContext): vo
         });
 
         if (newEntries.length === 0) {
-          res.status(409).json({ error: 'No new entries to import (all duplicates)' });
+          res.status(409).json({ error: 'No new entries to import' });
           return;
         }
 
@@ -62,7 +62,7 @@ export const importPackageRoute = (router: Router, context: KeystoneContext): vo
 
                   if (found) return { customId: comp.customId };
 
-                  const created = await context.query.component.createOne({
+                  const created = await context.query.Component.createOne({
                     data: {
                       customId: comp.customId,
                       name: comp.name,
@@ -81,7 +81,7 @@ export const importPackageRoute = (router: Router, context: KeystoneContext): vo
 
             const validComponents = connectedComponents.filter((c): c is { customId: string } => !!c);
 
-            await context.query.page.createOne({
+            await context.query.Page.createOne({
               data: {
                 customId: pageData.customId,
                 name: pageData.name,
@@ -95,7 +95,7 @@ export const importPackageRoute = (router: Router, context: KeystoneContext): vo
         db.data.versions.push(...newEntries);
         await db.write();
 
-        res.status(200).json({ message: '✅ Import completed', imported: newEntries.length });
+        res.status(200).json({ message: 'Import completed', imported: newEntries.length });
       } catch (err) {
         console.error('Error in /api/package/import:', err);
         res.status(500).json({ error: 'Internal Server Error' });
