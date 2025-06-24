@@ -13,11 +13,13 @@ const nextConfig = {
   reactStrictMode: true,
   webpack(config, options) {
     const { isServer } = options;
+    const remoteIp = process.env.REMOTE_IP || 'localhost';
+    const remotePort = process.env.REMOTE_PORT || '3003';
     config.plugins.push(
       new NextFederationPlugin({
         name: 'host',
         remotes: {
-          remote: `remote@http://localhost:3001/_next/static/${
+          remote: `remote@http://${remoteIp}:${remotePort}/_next/static/${
             isServer ? 'ssr' : 'chunks'
           }/remoteEntry.js`,
         },
