@@ -20,8 +20,8 @@ const nextConfig = {
           './Component1': './src/components/Component1.tsx',
         },
         shared: {
-          react: { singleton: true, requiredVersion: '18.3.1' },
-          'react-dom': { singleton: true, requiredVersion: '18.3.1' },
+          react: { singleton: true, requiredVersion: '18.2.0' },
+          'react-dom': { singleton: true, requiredVersion: '18.2.0' },
         },
         extraOptions: {},
       }),
