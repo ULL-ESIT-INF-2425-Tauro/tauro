@@ -8,8 +8,8 @@ export default {
     'bash -c "cd apps/microservices/products && make format" -- <file>',
   ],
   'apps/host/src/**/*.{js,ts,tsx}': [
-    'bash -c "cd apps/host && bun run lint" -- <file>',
-    'bash -c "cd apps/host && bun run format" -- <file>',
+    'bash -c "cd apps/host && pnpm run lint" -- <file>',
+    'bash -c "cd apps/host && pnpm run format" -- <file>',
   ],
   'apps/microfrontends/comperium/src/**/*.{js,ts,tsx}': [
     'bash -c "cd apps/microfrontends/comperium && pnpm run lint" -- <file>',

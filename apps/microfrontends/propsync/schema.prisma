@@ -48,6 +48,6 @@ model Component {
 model Page {
   id         String      @id @default(cuid())
   customId   String      @unique @default("")
-  name       String      @default("")
+  name       String      @unique @default("")
   components Component[] @relation("Component_pages")
 }

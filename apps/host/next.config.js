@@ -1,4 +1,6 @@
 //@ts-check
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { composePlugins, withNx } = require('@nx/next');
 const { NextFederationPlugin } = require('@module-federation/nextjs-mf');
 
@@ -7,35 +9,36 @@ const { NextFederationPlugin } = require('@module-federation/nextjs-mf');
  **/
 const nextConfig = {
   nx: {
+    // Set this to true if you would like to use SVGR
+    // See: https://github.com/gregberge/svgr
     svgr: false,
   },
 
   reactStrictMode: true,
   webpack(config, options) {
     const { isServer } = options;
-    const remoteIp = process.env.REMOTE_IP || 'localhost';
-    const remotePort = process.env.REMOTE_PORT || '3003';
     config.plugins.push(
       new NextFederationPlugin({
         name: 'host',
         remotes: {
-          remote: `remote@http://${remoteIp}:${remotePort}/_next/static/${
+          remote: `remote@http://localhost:3002/_next/static/${
             isServer ? 'ssr' : 'chunks'
           }/remoteEntry.js`,
         },
         filename: 'static/chunks/remoteEntry.js',
-        shared: {
-          react: { singleton: true, requiredVersion: '18.2.0' },
-          'react-dom': { singleton: true, requiredVersion: '18.2.0' },
-        },
-        extraOptions: {},
-      })
+        extraOptions: {}
+      }),
     );
 
     return config;
   },
 };
 
-const plugins = [withNx];
+const plugins = [
+  // Add more Next.js plugins to this list if needed.
+  withNx,
+
+
+];
 
 module.exports = composePlugins(...plugins)(nextConfig);

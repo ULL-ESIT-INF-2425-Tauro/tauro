@@ -3,7 +3,7 @@
   "version": "1.0.3",
   "private": true,
   "scripts": {
-    "dev": "keystone dev -p 3002",
+    "dev": "keystone dev",
     "start": "keystone start",
     "build": "keystone build",
     "migration:generate": "prisma generate",
@@ -25,7 +25,6 @@
   },
   "peerDependencies": {
     "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "typescript": "~5.6.3"
+    "react-dom": "18.2.0"
   }
 }

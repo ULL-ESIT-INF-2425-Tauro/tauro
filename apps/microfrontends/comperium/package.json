@@ -1,16 +1,7 @@
 {
-  "name": "@tauro/comperium",
-  "version": "0.0.1",
-  "private": true,
   "scripts": {
-    "dev": "next dev -p 3003 -H 0.0.0.0",
-    "lint": "pnpm exec eslint --fix .",
-    "format": "pnpm exec prettier --write ."
-  },
-  "peerDependencies": {
-    "next": "14.2.16",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "lint": "eslint --fix .",
+    "format": "prettier --write ."
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.10"

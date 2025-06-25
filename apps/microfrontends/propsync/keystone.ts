@@ -58,8 +58,14 @@ export default withAuth(
       ],
     },
     session,
+    graphql: {
+    apolloConfig: {
+      csrfPrevention: false, // TODO CHANGE FOR PROD
+    },
+    cors: false
+  },
     server: {
-      cors: { origin: [process.env.ORIGIN_CORS || ''], credentials: true },
+
       extendExpressApp: (app: Express, context: KeystoneContext) => {
         const versionRouter = express.Router();
         versionRouter.use(express.json());

@@ -1,4 +1,5 @@
 //@ts-check
+
 const { composePlugins, withNx } = require('@nx/next');
 const { NextFederationPlugin } = require('@module-federation/nextjs-mf');
 
@@ -7,6 +8,8 @@ const { NextFederationPlugin } = require('@module-federation/nextjs-mf');
  **/
 const nextConfig = {
   nx: {
+    // Set this to true if you would like to use SVGR
+    // See: https://github.com/gregberge/svgr
     svgr: false,
   },
 
@@ -17,13 +20,9 @@ const nextConfig = {
         name: 'remote',
         filename: 'static/chunks/remoteEntry.js',
         exposes: {
-          './Component1': './src/components/Component1.tsx',
+          './Component1': './src/components/Component1.tsx'
         },
-        shared: {
-          react: { singleton: true, requiredVersion: '18.2.0' },
-          'react-dom': { singleton: true, requiredVersion: '18.2.0' },
-        },
-        extraOptions: {},
+        extraOptions: {}
       }),
     );
 
@@ -31,6 +30,9 @@ const nextConfig = {
   },
 };
 
-const plugins = [withNx];
+const plugins = [
+  // Add more Next.js plugins to this list if needed.
+  withNx,
+];
 
 module.exports = composePlugins(...plugins)(nextConfig);

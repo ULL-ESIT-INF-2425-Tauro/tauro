@@ -171,7 +171,7 @@ export const lists = {
     access: allowAll,
     fields: {
       customId: text({ isIndexed: 'unique', validation: { isRequired: true } }),
-      name: text({ validation: { isRequired: true }}),
+      name: text({ isIndexed: 'unique', validation: { isRequired: true } }),
       components: relationship({
         // we could have used 'Tag', but then the relationship would only be 1-way
         ref: 'Component.pages',

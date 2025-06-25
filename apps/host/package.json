@@ -1,18 +1,13 @@
 {
-  "name": "@tauro/host",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "dev": "next dev -p 3000",
-    "lint": "eslint --fix .",
-    "format": "prettier --write ."
-  },
-  "peerDependencies": {
-    "next": "14.2.16",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.10"
-  }
+	"scripts": {
+		"lint": "eslint --fix .",
+		"format": "prettier --write ."
+	},
+	"dependencies": {
+		"better-auth": "^1.1.10",
+		"zustand": "^5.0.2"
+	},
+	"devDependencies": {
+		"@tailwindcss/postcss": "^4.1.10"
+	}
 }
