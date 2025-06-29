@@ -31,11 +31,7 @@ export function Index({
   pageData: PageProps;
 }) {
   return (
-    <div>
-      <h1>
-        <span>Tauto Host</span>
-      </h1>
-
+    <div className="bg-white min-h-screen">
       {pageData.components.map((component, index) => {
         const componentName = component.name;
         const ComponentToRender =

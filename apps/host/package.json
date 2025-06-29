@@ -6,8 +6,5 @@
 	"dependencies": {
 		"better-auth": "^1.1.10",
 		"zustand": "^5.0.2"
-	},
-	"devDependencies": {
-		"@tailwindcss/postcss": "^4.1.10"
 	}
 }
