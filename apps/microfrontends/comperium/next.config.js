@@ -23,6 +23,7 @@ const nextConfig = {
         exposes: {
           './Component1': './src/components/Component1.tsx',
           './Header': './src/components/production/header/Header.tsx',
+          './HeroSection': './src/components/production/heroes/hero-section/HeroSection.tsx',
         },
         extraOptions: {},
       }),
