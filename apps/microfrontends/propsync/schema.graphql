@@ -331,6 +331,7 @@ type Page {
   id: ID!
   customId: String
   name: String
+  order: JSON
   components(where: ComponentWhereInput! = {}, orderBy: [ComponentOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ComponentWhereUniqueInput): [Component!]
   componentsCount(where: ComponentWhereInput! = {}): Int
 }
@@ -366,6 +367,7 @@ input PageOrderByInput {
 input PageUpdateInput {
   customId: String
   name: String
+  order: JSON
   components: ComponentRelateToManyForUpdateInput
 }
 
@@ -384,6 +386,7 @@ input PageUpdateArgs {
 input PageCreateInput {
   customId: String
   name: String
+  order: JSON
   components: ComponentRelateToManyForCreateInput
 }
 

@@ -2,8 +2,5 @@
   "scripts": {
     "lint": "eslint --fix .",
     "format": "prettier --write ."
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.10"
   }
 }

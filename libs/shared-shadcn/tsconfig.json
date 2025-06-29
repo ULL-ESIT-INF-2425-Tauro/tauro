@@ -1,13 +1,14 @@
 {
-  "extends": "../../../tsconfig.base.json",
+  "extends": "../../tsconfig.base.json",
   "references": [
-    { "path": "../../../libs/shared-types" },
-    { "path": "../../../libs/shared-utils" },
-    { "path": "../../../libs/shared-shadcn" }
+    { "path": "../shared-types" },
+    { "path": "../shared-utils" }
   ],
   "compilerOptions": {
     "jsx": "preserve",
-    "noEmit": true,
+    "strict": false,
+    "skipLibCheck": true,
+    "noEmit": false,
     "emitDeclarationOnly": false,
     "esModuleInterop": true,
     "module": "esnext",
@@ -29,9 +30,8 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@tauro/shared/types": ["../../../libs/shared-types/src/index.ts"],
-      "@tauro/shared/utils": ["../../../libs/shared-utils/src/index.ts"],
-      "@tauro/shared/shadcn/*": ["../../../libs/shared-shadcn/src/components/ui/*"],
+      "@tauro/shared/types": ["../shared-types/src/index.ts"],
+      "@tauro/shared/utils": ["../shared-utils/src/index.ts"],
       "@/*": ["./src/*"],
     },
     "outDir": "dist",

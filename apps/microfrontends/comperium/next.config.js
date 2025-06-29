@@ -2,6 +2,7 @@
 
 const { composePlugins, withNx } = require('@nx/next');
 const { NextFederationPlugin } = require('@module-federation/nextjs-mf');
+const path = require('path');
 
 /**
  * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
@@ -20,12 +21,20 @@ const nextConfig = {
         name: 'remote',
         filename: 'static/chunks/remoteEntry.js',
         exposes: {
-          './Component1': './src/components/Component1.tsx'
+          './Component1': './src/components/Component1.tsx',
+          './Header': './src/components/production/header/Header.tsx',
         },
-        extraOptions: {}
+        extraOptions: {},
       }),
     );
-
+    config.resolve.alias['@tauro/shared/utils'] = path.resolve(
+      __dirname,
+      '../../../libs/shared-utils/src',
+    );
+    config.resolve.alias['@tauro/shared/types'] = path.resolve(
+      __dirname,
+      '../../../libs/shared-types/src',
+    );
     return config;
   },
 };

@@ -49,5 +49,6 @@ model Page {
   id         String      @id @default(cuid())
   customId   String      @unique @default("")
   name       String      @unique @default("")
+  order      Json?
   components Component[] @relation("Component_pages")
 }

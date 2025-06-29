@@ -172,6 +172,7 @@ export const lists = {
     fields: {
       customId: text({ isIndexed: 'unique', validation: { isRequired: true } }),
       name: text({ isIndexed: 'unique', validation: { isRequired: true } }),
+      order: json(),
       components: relationship({
         // we could have used 'Tag', but then the relationship would only be 1-way
         ref: 'Component.pages',
