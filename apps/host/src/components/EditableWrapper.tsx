@@ -1,8 +1,9 @@
 import * as React from "react"
 import type { PageProps } from "@tauro/shared/types"
 import { loadRemoteComponent, updateComponent } from "@/api/ComponentFactory"
+import { EditContext } from '@/context/EditContext'; 
 
-interface EditableWrapperProps {
+type EditableWrapperProps = {
   pageData: PageProps
   isEditMode: boolean
   children?: React.ReactNode
@@ -11,13 +12,14 @@ interface EditableWrapperProps {
 function EditableWrapper({ pageData, isEditMode, children }: EditableWrapperProps) {
   const [editedProps, setEditedProps] = React.useState<Record<string, any>>({})
   const [showToolsDialog, setShowToolsDialog] = React.useState(false)
+  const [blur, setBlur] = React.useState(false)
 
-  const handleSetEditedProp = (componentId: string, updatedData: any) => {
+  const setEditedProp = (componentId: string, updatedData: any) => {
     setEditedProps((prev) => ({
       ...prev,
       [componentId]: updatedData,
-    }))
-  }
+    }));
+  };
 
   const handlePublish = async () => {
     const updatedComponents = pageData.components.map((component) => {
@@ -60,59 +62,62 @@ function EditableWrapper({ pageData, isEditMode, children }: EditableWrapperProp
   }
 
   return (
-    <div className="bg-white min-h-screen relative">
-      {isEditMode && (
-        <>
-          {/* Backdrop blur overlay */}
-          {showToolsDialog && <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[90]" />}
+    <EditContext.Provider value={{ isEditMode, setEditedProp, setBlur }}>
+        <div className="bg-white min-h-screen relative">
+        {isEditMode && (
+            <>
+            {/* Backdrop blur overlay */}
+            {showToolsDialog && <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[90]" />}
 
-          {/* Tools button and dialog container */}
-          <div
-            className="fixed top-4 right-4 z-[100]"
-            onMouseEnter={() => setShowToolsDialog(true)}
-            onMouseLeave={() => setShowToolsDialog(false)}
-          >
-            <button className="bg-blue-600 hover:bg-blue-500 text-white shadow-lg px-4 py-2 rounded-md transition-colors">
-              Tools
-            </button>
+            {/* Tools button and dialog container */}
+            <div
+                className="fixed top-4 right-4 z-[100]"
+                onMouseEnter={() => setShowToolsDialog(true)}
+                onMouseLeave={() => setShowToolsDialog(false)}
+            >
+                <button className="bg-blue-600 hover:bg-blue-500 text-white shadow-lg px-4 py-2 rounded-md transition-colors">
+                Tools
+                </button>
 
-            {/* Tools dialog */}
-            {showToolsDialog && (
-              <div className="absolute top-full right-0 mt-1 bg-white rounded-lg shadow-xl border border-gray-200 p-3 min-w-[160px]">
-                <div className="flex flex-col gap-2">
-                  <button
-                    onClick={handlePublish}
-                    className="bg-violet-600 hover:bg-violet-500 text-white px-3 py-2 rounded-md text-sm transition-colors text-left"
-                  >
-                    Publish
-                  </button>
+                {/* Tools dialog */}
+                {showToolsDialog && (
+                <div className="absolute top-full right-0 mt-1 bg-white rounded-lg shadow-xl border border-gray-200 p-3 min-w-[160px]">
+                    <div className="flex flex-col gap-2">
+                    <button
+                        onClick={handlePublish}
+                        className="bg-violet-600 hover:bg-violet-500 text-white px-3 py-2 rounded-md text-sm transition-colors text-left"
+                    >
+                        Publish
+                    </button>
+                    </div>
                 </div>
-              </div>
-            )}
-          </div>
-        </>
-      )}
-      {children}
+                )}
+            </div>
+            </>
+        )}
+        {children}
 
-      {/* Render page components */}
-      {pageData.components.map((component, index) => {
-        const componentName = component.name
-        const componentId = component.id
-        const propsWithExtras = {
-          ...component.props,
-          isEditMode,
-          setEditedProp: (data: any) => handleSetEditedProp(componentId, data),
-        }
+        {/* Backdrop blur overlay */}
+        {blur && (
+            <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[99]" aria-hidden="true" />
+        )}
 
-        const ComponentToRender = loadRemoteComponent(componentName);
-        if (!ComponentToRender) {
-          console.warn(`⚠️ No component found for name: ${componentName}`)
-          return null
-        }
+        {/* Render page components */}
+        {pageData.components.map((component) => {
+          const Component = loadRemoteComponent(component.name);
+          if (!Component) {
+            console.warn(`Unknown component: ${component.name}`);
+            return null;
+          }
 
-        return <ComponentToRender key={componentId} {...propsWithExtras} />
-      })}
-    </div>
+          const propsWithOverrides = {
+            ...component.props,
+          };
+
+          return <Component key={component.id} {...propsWithOverrides} />;
+        })}
+        </div>
+    </EditContext.Provider>
   )
 }
 
