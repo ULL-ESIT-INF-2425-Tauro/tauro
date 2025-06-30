@@ -65,7 +65,9 @@ export default withAuth(
     cors: false
   },
     server: {
-
+      cors: {
+        origin: "*"
+      },
       extendExpressApp: (app: Express, context: KeystoneContext) => {
         const versionRouter = express.Router();
         versionRouter.use(express.json());

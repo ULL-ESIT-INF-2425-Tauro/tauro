@@ -1,9 +1,9 @@
-import { NavigationItem } from '@tauro/shared/types';
+import { NavigationItemType } from '@tauro/shared/types';
 
 import Link from 'next/link';
 
 type NavigationProps = {
-  navigationItems: NavigationItem[];
+  navigationItems: NavigationItemType[];
   isMobile?: boolean;
   onItemClick?: () => void;
 };
