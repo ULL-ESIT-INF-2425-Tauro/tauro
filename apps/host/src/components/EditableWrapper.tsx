@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type { PageProps } from '@tauro/shared/types';
 import { loadRemoteComponent, updateComponent } from '@/api/ComponentFactory';
-import { EditContext } from '@/context/EditContext';
+import { EditContext } from '@tauro/shared/shadcn/EditContext';
 
 type EditableWrapperProps = {
   pageData: PageProps;

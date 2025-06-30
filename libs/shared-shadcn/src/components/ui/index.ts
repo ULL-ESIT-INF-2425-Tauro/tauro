@@ -3,3 +3,5 @@ export * from './input';
 export * from './textarea';
 export * from './dialog';
 export * from './label';
+
+export * from './EditContext'
