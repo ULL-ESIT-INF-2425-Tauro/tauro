@@ -1,5 +1,5 @@
 import { AppProps } from 'next/app';
-import './styles.css';
+import '../styles/tailwind.css';
 
 function TauroApp({ Component, pageProps }: AppProps) {
   return (

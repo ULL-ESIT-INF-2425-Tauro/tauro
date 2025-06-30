@@ -11,7 +11,7 @@
       "options": {
         "buildTarget": "tauro-host:build",
         "dev": true,
-        "port": 3000
+        "port": 3010
       }
     }
   }

@@ -283,9 +283,13 @@ importers:
     devDependencies:
       '@tailwindcss/postcss':
         specifier: ^4.1.10
-        version: 4.1.10(ts-node@10.9.1(@swc/core@1.5.29(@swc/helpers@0.5.17))(@types/node@18.16.9)(typescript@5.8.3))
+        version: 4.1.10
 
-  apps/microfrontends/comperium: {}
+  apps/microfrontends/comperium:
+    devDependencies:
+      '@tailwindcss/postcss':
+        specifier: ^4.1.10
+        version: 4.1.10
 
   apps/microfrontends/propsync:
     dependencies:
