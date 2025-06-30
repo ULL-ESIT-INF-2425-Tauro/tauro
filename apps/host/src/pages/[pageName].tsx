@@ -5,7 +5,8 @@ import { fetchPage } from "@/api/ComponentFactory"
 import EditableWrapper from "@/components/EditableWrapper"
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const pageName = "Home";
+  const pageNameParam = (context.params?.pageName as string);
+  const pageName = pageNameParam.charAt(0).toUpperCase() + pageNameParam.slice(1).toLowerCase();
 
   if (!pageName) {
     return {
