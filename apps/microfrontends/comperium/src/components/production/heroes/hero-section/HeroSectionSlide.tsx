@@ -1,4 +1,3 @@
-import { useEditContext } from '@tauro/shared/shadcn/*';
 import { HeroSectionSlideType } from '@tauro/shared/types';
 import { cn } from '@tauro/shared/utils';
 
@@ -14,7 +13,6 @@ type HeroeSectionSlideProps = {
 };
 
 function HeroeSectionSlide({ slide, isActive, onSlideUpdate }: HeroeSectionSlideProps) {
-  const { isEditMode } = useEditContext();
   return (
     <div
       className={cn(
@@ -38,7 +36,6 @@ function HeroeSectionSlide({ slide, isActive, onSlideUpdate }: HeroeSectionSlide
             onSave={({ text, link }) =>
               onSlideUpdate({ ...slide, buttonText: text, buttonLink: link })
             }
-            isEditMode={isEditMode}
             className="rounded-full bg-blue-600 px-5 py-2 sm:px-6 sm:py-4 sm:text-xl lg:px-6 flex items-center text-base lg:text-lg font-medium text-white shadow-lg transition-colors hover:bg-blue-500/90"
             dialogTitle="Hero Button CTA"
             contextInfo={`Edit button props of slide ${slide.id}`}
@@ -53,7 +50,7 @@ function HeroeSectionSlide({ slide, isActive, onSlideUpdate }: HeroeSectionSlide
             src={slide.image || '/placeholder.svg'}
             alt={slide.imageAlt}
             fill
-            className="object-contain transform -rotate-12 p-4 lg:object-right-top"
+            className={`object-contain transform ${slide.image === '/TauroHeadRotated.png' ? '' : '-rotate-12'} p-4 lg:object-right-top`}
             priority={slide.id === 1}
             sizes="(max-width: 768px) 100vw, 50vw"
           />

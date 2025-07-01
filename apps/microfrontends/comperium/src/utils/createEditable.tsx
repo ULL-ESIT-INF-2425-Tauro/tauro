@@ -16,7 +16,6 @@ type EditableFactoryOptions<T> = {
 type EditableProps<T> = {
   value: T;
   onSave: (value: T) => void;
-  isEditMode?: boolean;
   className?: string;
   dialogTitle?: string;
   contextInfo?: string;

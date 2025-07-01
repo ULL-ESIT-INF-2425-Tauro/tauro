@@ -1,15 +1,11 @@
-import { Snowflake } from 'lucide-react';
+import Link from 'next/link';
 
 export function Logo() {
   return (
-    <div className="flex items-center space-x-1 sm:space-x-2">
-      <Snowflake
-        className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-white animate-spin-slow"
-        aria-hidden="true"
-      />
-      <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold italic truncate">
-        Congelados Tauro
-      </h1>
+    <div className="flex items-center space-x-1 sm:space-x-2 mt-4 ms-12 h-48 w-48 drop-shadow-[0_2px_6px_rgba(0,0,0,0.3)]">
+      <Link href="/">
+        <img src="/TauroLetters.png" alt="Tauro logo" className="h-full w-full object-contain" />
+      </Link>
     </div>
   );
 }
