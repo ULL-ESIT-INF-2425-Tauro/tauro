@@ -1,22 +1,20 @@
+import { useEditContext } from '@tauro/shared/shadcn/*';
 import { HeroSectionSlideType } from '@tauro/shared/types';
 import { cn } from '@tauro/shared/utils';
 
 import Image from 'next/image';
 
-import EditableButtonCTA from '@/components/editable/EditableButtonCTA';
+import { EditableButtonCTA } from '@/components/editable/EditableButtonCTA';
 import { EditableHeading } from '@/components/editable/EditableHeading';
 
 type HeroeSectionSlideProps = {
   slide: HeroSectionSlideType;
   isActive: boolean;
-  isEditMode: boolean;
-  EditorHandler: {
-    handleSlideUpdate: (updatedSlide: HeroSectionSlideType) => void;
-  };
+  onSlideUpdate: (updatedSlide: HeroSectionSlideType) => void;
 };
 
-function HeroeSectionSlide({ slide, isActive, isEditMode, EditorHandler }: HeroeSectionSlideProps) {
-  const { handleSlideUpdate } = EditorHandler;
+function HeroeSectionSlide({ slide, isActive, onSlideUpdate }: HeroeSectionSlideProps) {
+  const { isEditMode } = useEditContext();
   return (
     <div
       className={cn(
@@ -28,24 +26,22 @@ function HeroeSectionSlide({ slide, isActive, isEditMode, EditorHandler }: Heroe
       {/* Text content */}
       <div className="relative z-10 flex h-[45%] lg:h-full flex-col justify-center text-center lg:text-left px-2 lg:px-0 lg:w-1/2">
         <EditableHeading
-          text={slide.title}
-          onSave={(newTitle) => handleSlideUpdate({ ...slide, title: newTitle })}
-          isEditMode={isEditMode}
+          value={{ text: slide.title }}
+          onSave={({ text }) => onSlideUpdate({ ...slide, title: text })}
           className="whitespace-pre-line text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-blue-800"
           dialogTitle="Hero Slide Title"
           contextInfo={`Edit slide ${slide.id}`}
         />
         <div className="mt-10 lg:mt-16 flex justify-center sm:mt-12 lg:justify-start lg:ms-14">
           <EditableButtonCTA
-            buttonText={slide.buttonText}
-            buttonLink={slide.buttonLink}
-            isEditMode={isEditMode}
-            dialogTitle="Hero Button CTA"
-            contextInfo={`Edit button props`}
-            className="rounded-full bg-blue-600 px-5 py-2 sm:px-6 sm:py-6 sm:text-xl lg:px-8 lg:py-6 flex items-center text-base lg:text-lg font-medium text-white shadow-lg transition-colors hover:bg-blue-500/90"
+            value={{ text: slide.buttonText, link: slide.buttonLink }}
             onSave={({ text, link }) =>
-              handleSlideUpdate({ ...slide, buttonText: text, buttonLink: link })
+              onSlideUpdate({ ...slide, buttonText: text, buttonLink: link })
             }
+            isEditMode={isEditMode}
+            className="rounded-full bg-blue-600 px-5 py-2 sm:px-6 sm:py-4 sm:text-xl lg:px-6 flex items-center text-base lg:text-lg font-medium text-white shadow-lg transition-colors hover:bg-blue-500/90"
+            dialogTitle="Hero Button CTA"
+            contextInfo={`Edit button props of slide ${slide.id}`}
           />
         </div>
       </div>

@@ -31,10 +31,6 @@ function EditableDialog({
 }: EditableDialogProps) {
   return (
     <>
-      {/* Backdrop blur overlay */}
-      {isOpen && (
-        <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[99]" aria-hidden="true" />
-      )}
       <Dialog open={isOpen} onOpenChange={onOpenChange}>
         <DialogContent className="relative select-none sm:max-w-[500px] z-[100] fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-white p-6 pt-10">
           <DialogHeader>

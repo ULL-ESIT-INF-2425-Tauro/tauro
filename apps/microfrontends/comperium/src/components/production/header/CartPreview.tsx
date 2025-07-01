@@ -5,12 +5,14 @@ import { ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { PausedComponent } from '@/types/types';
+
 type CartPreviewProps = {
   cartItems: CartItemType[];
   isOpen: boolean;
-};
+} & PausedComponent;
 
-export function CartPreview({ cartItems, isOpen }: CartPreviewProps) {
+export function CartPreview({ cartItems, isOpen, isEditMode }: CartPreviewProps) {
   if (!isOpen) return null;
 
   const itemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
@@ -66,16 +68,33 @@ export function CartPreview({ cartItems, isOpen }: CartPreviewProps) {
           <span className="font-bold text-sm sm:text-base">{subtotal.toFixed(2)}€</span>
         </div>
         <div className="grid gap-2">
-          <Button className="w-full h-9 sm:h-10 text-xs sm:text-sm bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white">
-            Pagar ahora
-          </Button>
-          <Link
-            href="/carrito"
-            className="flex items-center justify-center text-xs sm:text-sm text-blue-600 hover:text-blue-800 font-medium py-1"
-          >
-            Ver carrito completo
-            <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4 ml-1" />
-          </Link>
+          {isEditMode ? (
+            <>
+              <Button
+                className="w-full h-9 sm:h-10 text-xs sm:text-sm bg-gray-300 text-gray-500 cursor-not-allowed"
+                disabled
+              >
+                Pagar ahora
+              </Button>
+              <span className="flex items-center justify-center text-xs sm:text-sm text-gray-400 font-medium py-1">
+                Ver carrito completo
+                <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4 ml-1" />
+              </span>
+            </>
+          ) : (
+            <>
+              <Button className="w-full h-9 sm:h-10 text-xs sm:text-sm bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white">
+                Pagar ahora
+              </Button>
+              <Link
+                href="/carrito"
+                className="flex items-center justify-center text-xs sm:text-sm text-blue-600 hover:text-blue-800 font-medium py-1"
+              >
+                Ver carrito completo
+                <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4 ml-1" />
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </div>
