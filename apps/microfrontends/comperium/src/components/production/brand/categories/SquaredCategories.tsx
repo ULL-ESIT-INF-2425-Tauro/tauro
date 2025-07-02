@@ -1,5 +1,8 @@
-import { EditContext } from '@tauro/shared/shadcn/*';
+import { EditContext } from '@tauro/shared/shadcn/EditContext';
 import type { Category } from '@tauro/shared/types';
+
+import * as React from 'react';
+import 'tailwindcss/tailwind.css';
 
 import { useEditableState } from '@/hooks/useEditableState';
 import { EditableComponent } from '@/types/types';

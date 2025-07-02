@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import * as React from 'react';
+import 'tailwindcss/tailwind.css';
 
 export function Logo() {
   return (
