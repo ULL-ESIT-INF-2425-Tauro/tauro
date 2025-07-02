@@ -10,7 +10,7 @@ export function CategoryIcon({ category }: CategoryIconProps) {
       {typeof category.icon === 'string' ? (
         <img
           src={category.icon || '/placeholder.svg'}
-          className="object-contain rounded-full"
+          className="object-contain rounded-full select-none"
           alt={`${category.name} icon`}
           style={{ backgroundColor: category.color }}
         />

@@ -24,7 +24,8 @@ const nextConfig = {
           './Component1': './src/components/Component1.tsx',
           './Header': './src/components/production/header/Header.tsx',
           './HeroSection': './src/components/production/heroes/hero-section/HeroSection.tsx',
-          './SquaredCategories': './src/components/production/brand/categories/SquaredCategories.tsx',
+          './SquaredCategories':
+            './src/components/production/brand/categories/SquaredCategories.tsx',
         },
         extraOptions: {},
       }),
