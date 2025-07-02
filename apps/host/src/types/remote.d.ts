@@ -18,3 +18,11 @@ declare module 'remote/HeroSection' {
   const HeroSection: FC<Record<string, unknown>>;
   export default HeroSection;
 }
+
+declare module 'remote/SquaredCategories' {
+  import { FC } from 'react';
+
+  const SquaredCategories: FC<Record<string, unknown>>;
+  export default SquaredCategories;
+}
+

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import type { PageProps } from '@tauro/shared/types';
 import { loadRemoteComponent, updateComponent } from '@/api/ComponentFactory';
-import { EditContext } from '@tauro/shared/shadcn/EditContext';
 
 type EditableWrapperProps = {
   pageData: PageProps;
@@ -48,12 +47,9 @@ function EditableWrapper({
     try {
       await Promise.all(
         updatedComponents.map(async (component) => {
-          const original = pageData.components.find(
-            (c) => c.id === component.id,
-          );
+          const original = pageData.components.find((c) => c.id === component.id);
           const propsChanged =
-            original &&
-            JSON.stringify(original.props) !== JSON.stringify(component.props);
+            original && JSON.stringify(original.props) !== JSON.stringify(component.props);
 
           if (propsChanged) {
             const result = await updateComponent(component.id, component.props);
@@ -70,16 +66,13 @@ function EditableWrapper({
   };
 
   return (
-    <EditContext.Provider value={{ isEditMode, setEditedProp, setBlur }}>
       <div className="bg-white min-h-screen relative">
+        {/* Edit tools */}
         {isEditMode && (
           <>
-            {/* Backdrop blur overlay */}
             {showToolsDialog && (
               <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[90]" />
             )}
-
-            {/* Tools button and dialog container */}
             <div
               className="fixed top-4 right-4 z-[100]"
               onMouseEnter={() => setShowToolsDialog(true)}
@@ -88,26 +81,21 @@ function EditableWrapper({
               <button className="bg-blue-600 hover:bg-blue-500 text-white shadow-lg px-4 py-2 rounded-md transition-colors">
                 Tools
               </button>
-
-              {/* Tools dialog */}
               {showToolsDialog && (
                 <div className="absolute top-full right-0 mt-1 bg-white rounded-lg shadow-xl border border-gray-200 p-3 min-w-[160px]">
-                  <div className="flex flex-col gap-2">
-                    <button
-                      onClick={handlePublish}
-                      className="bg-violet-600 hover:bg-violet-500 text-white px-3 py-2 rounded-md text-sm transition-colors text-left"
-                    >
-                      Publish
-                    </button>
-                  </div>
+                  <button
+                    onClick={handlePublish}
+                    className="bg-violet-600 hover:bg-violet-500 text-white px-3 py-2 rounded-md text-sm transition-colors text-left"
+                  >
+                    Publish
+                  </button>
                 </div>
               )}
             </div>
           </>
         )}
-        {children}
 
-        {/* Backdrop blur overlay */}
+        {/* Blur */}
         {blur && (
           <div
             className="fixed inset-0 bg-black/30 backdrop-blur-sm z-[99]"
@@ -115,7 +103,7 @@ function EditableWrapper({
           />
         )}
 
-        {/* Render page components */}
+        {/* Dynamic render */}
         {pageData.components.map((component) => {
           const Component = loadRemoteComponent(component.name);
           if (!Component) {
@@ -123,14 +111,19 @@ function EditableWrapper({
             return null;
           }
 
-          const propsWithOverrides = {
+          const componentId = component.id;
+          const propsWithExtras = {
             ...component.props,
+            isEditMode,
+            setBlur,
+            setEditedProp: (data: any) => setEditedProp(componentId, data),
+            componentId
           };
 
-          return <Component key={component.id} {...propsWithOverrides} />;
+          return <Component key={componentId} {...propsWithExtras} />;
         })}
+        {children}
       </div>
-    </EditContext.Provider>
   );
 }
 

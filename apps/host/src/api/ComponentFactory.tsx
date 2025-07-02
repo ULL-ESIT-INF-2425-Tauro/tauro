@@ -8,6 +8,7 @@ const remoteModules: Record<string, () => Promise<any>> = {
   Header: () => import('remote/Header'),
   HeroSection: () => import('remote/HeroSection'),
   Component1: () => import('remote/Component1'),
+  SquaredCategories: () => import('remote/SquaredCategories'),
 };
 
 export function loadRemoteComponent<T = any>(name: string) {
