@@ -1,5 +1,6 @@
 import { Component1Props } from '@tauro/shared/types';
 
+import * as React from 'react';
 import 'tailwindcss/tailwind.css';
 
 export default function Component1({ text }: Component1Props) {

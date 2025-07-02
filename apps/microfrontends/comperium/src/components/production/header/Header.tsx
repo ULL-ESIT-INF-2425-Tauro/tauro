@@ -67,7 +67,7 @@ function Header({
 
   return (
     <EditContext.Provider value={{ isEditMode, setEditedProp, setBlur }}>
-      <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 bg-gradient-to-r from-blue-500 to-purple-600 text-white">
+      <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/20 bg-gradient-to-r from-blue-400 to-purple-600 text-white">
         <div className="container mx-auto px-3 sm:px-4">
           <div className="flex justify-between items-center h-14 sm:h-16 md:h-18">
             <Logo />

@@ -1,4 +1,4 @@
-import { useEditContext } from '@tauro/shared/shadcn/*';
+import { useEditContext } from '@tauro/shared/shadcn/EditContenxt';
 
 import { Wrench } from 'lucide-react';
 import * as React from 'react';
